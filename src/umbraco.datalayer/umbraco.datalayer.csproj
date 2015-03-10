@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C7CB79F0-1C97-4B33-BFA7-00731B579AE2}</ProjectGuid>
+    <ProjectGuid>{EB8B8DC6-C52D-41DC-B405-18595BAA35DA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>umbraco.DataLayer</RootNamespace>
