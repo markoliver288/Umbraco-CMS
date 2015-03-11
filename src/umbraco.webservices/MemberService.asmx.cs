@@ -140,7 +140,26 @@ namespace umbraco.webservices.members
             umbraco.BusinessLogic.User user = GetUser(username, password);
 
             // Create the new member
-            umbraco.cms.businesslogic.member.Member newMember = umbraco.cms.businesslogic.member.Member.MakeNew(carrier.DisplayedName, mtype, user);
+            string loginName = !String.IsNullOrEmpty(carrier.LoginName) ? carrier.LoginName : string.Empty,
+                       email = !String.IsNullOrEmpty(carrier.Email) ? carrier.Email : string.Empty;
+
+            umbraco.cms.businesslogic.member.Member newMember = umbraco.cms.businesslogic.member.Member.MakeNew(carrier.DisplayedName, loginName, email, mtype, user);
+            //umbraco.cms.businesslogic.member.Member newMember = umbraco.cms.businesslogic.member.Member.MakeNew(carrier.DisplayedName, mtype, user);
+
+            newMember.Password = carrier.Password;
+
+            /* Adds the member to the group */
+            foreach (members.memberGroup memGroup in carrier.Groups)
+            {
+                MemberGroup group = MemberGroup.GetByName(memGroup.GroupName);
+
+                if (group != null && group.Text != "")
+                {
+                    newMember.AddGroup(group.Id);
+                }
+            }
+
+            newMember.Save();
 
             // We iterate the properties in the carrier
             if (carrier.MemberProperties != null)
