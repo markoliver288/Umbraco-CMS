@@ -533,6 +533,7 @@ namespace umbraco.cms.businesslogic.member
                 SqlHelper.ExecuteNonQuery(
                     "update cmsMember set Email = @email where nodeId = @id",
                     SqlHelper.CreateParameter("@id", Id), SqlHelper.CreateParameter("@email", value));
+                m_Email = value;
             }
         }
         #endregion
