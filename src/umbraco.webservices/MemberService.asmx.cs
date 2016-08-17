@@ -103,7 +103,12 @@ namespace umbraco.webservices.members
             member.LoginName = carrier.LoginName;
             member.Text = carrier.DisplayedName;
             member.Email = carrier.Email;
-            member.Password = carrier.Password;
+
+            //We dont need a password unless we want to change it.
+            if( carrier.Password != null )
+            {
+                member.Password = carrier.Password;
+            }
 
             // We iterate the properties in the carrier
             if (carrier.MemberProperties != null)
